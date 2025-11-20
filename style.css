@@ -1,0 +1,207 @@
+/* ------------------------- */
+/* CONFIGURAÇÕES GERAIS      */
+/* ------------------------- */
+/* Paleta de Cores Medieval */
+:root {
+    --cor-pergaminho: #f7e6c3;     /* Fundo Principal - Pergaminho */
+    --cor-tinta: #3d2a1b;          /* Texto Principal - Tinta/Sépia */
+    --cor-couro: #704214;          /* Borda/Destaque - Couro Marrom */
+    --cor-metal: #a6a6a6;          /* Detalhes/Rodapé - Metal Envelhecido */
+    --cor-vinho: #800020;          /* Títulos/Ênfase - Vinho Escuro */
+}
+
+/* Reset original */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo Medieval */
+body {
+    /* Fontes imponentes (Old Standard TT ou Cinzel já devem estar no HTML) */
+    font-family: "Old Standard TT", serif;         
+    /* Fundo de pedra ou madeira escura (Textura) */
+    background: #5d4a3b;          
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%235d4a3b"/><path d="M0 0h100v100H0z" fill="none" stroke="%234c3d30" stroke-width="1"/></svg>');
+    color: var(--cor-tinta);
+    line-height: 1.6;
+}
+
+/* ------------------------- */
+/* CABEÇALHO (ESTANDARTE)    */
+/* ------------------------- */
+.hero {
+    /* Fundo de Couro ou Madeira */
+    background: var(--cor-couro);
+    color: var(--cor-pergaminho);
+    text-align: center;
+    padding: 70px 20px 50px 20px; /* Ajuste para dar espaço à borda */
+    margin-bottom: 25px;
+    
+    /* Sombra pesada para profundidade */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    
+    /* Borda de metal na parte inferior */
+    border-bottom: 5px solid var(--cor-metal); 
+}
+
+.hero h1 {
+    font-size: 3.2em;
+    font-weight: 700;
+    font-family: "Cinzel", serif; /* Fonte mais dramática para o título */
+    color: var(--cor-pergaminho);
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    opacity: 0.9;
+    font-style: italic;
+    color: var(--cor-metal);
+}
+
+/* ------------------------- */
+/* MENU SUPERIOR (TIRA DE COURO) */
+/* ------------------------- */
+nav {
+    /* Fundo de Tinta/Escuro */
+    background: var(--cor-tinta);
+    padding: 12px 0;
+    text-align: center;
+    
+    /* Sombra sutil */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    
+    /* Mantém o comportamento sticky */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    /* Detalhes de borda de metal */
+    border-top: 2px solid var(--cor-metal);
+    border-bottom: 2px solid var(--cor-metal);
+}
+
+nav a {
+    color: var(--cor-pergaminho); /* Texto claro */
+    text-decoration: none;
+    margin: 0 14px;
+    font-size: 1.05em;
+    padding: 8px 14px;
+    
+    /* Remove bordas arredondadas para estilo mais antigo */
+    border-radius: 0;
+    
+    transition: background 0.3s;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    /* Cor de destaque (vinho ou metal) no hover */
+    background: var(--cor-vinho); 
+}
+
+/* ------------------------- */
+/* CONTAINER                 */
+/* ------------------------- */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Título de Seção Principal (H2) */
+.titulo-secao-principal {
+    font-family: "Cinzel", serif;
+    font-size: 2.5em;
+    color: var(--cor-vinho);
+    text-align: center;
+    margin: 40px 0 25px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border-bottom: 2px dashed var(--cor-couro);
+    padding-bottom: 10px;
+}
+
+/* ------------------------- */
+/* CARTÕES DE REDAÇÃO (PERGAMINHO) */
+/* ------------------------- */
+.redacao {
+    /* Fundo de Pergaminho */
+    background: var(--cor-pergaminho);
+    color: var(--cor-tinta);
+    padding: 30px;
+    margin-bottom: 40px;
+    
+    /* Bordas rústicas/quadradas */
+    border-radius: 0;
+    
+    /* Borda de Couro (grossa) */
+    border: 8px solid var(--cor-couro);
+    
+    /* Sombra 3D para destacar do fundo de madeira */
+    box-shadow: 12px 12px 0px 0px rgba(0,0,0,0.4);
+    
+    /* Mantém a animação de entrada (agora controlada pelo JS) */
+    opacity: 1; /* Padrão 1, o JS controlará o fade-in ao scroll */
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mudança de h2 para h3 para títulos internos, devido ao novo h2 de seção */
+.redacao h3 { 
+    color: var(--cor-vinho); /* Título em Vinho */
+    margin-bottom: 12px;
+    font-family: "Cinzel", serif;
+    font-size: 1.8em;
+    text-transform: uppercase;
+}
+
+.redacao p {
+    line-height: 1.8;
+    /* Adiciona indentação para parecer um manuscrito */
+    text-indent: 30px; 
+}
+
+/* ------------------------- */
+/* RODAPÉ (BASE DE PEDRA)    */
+/* ------------------------- */
+footer {
+    /* Fundo de Pedra Escura */
+    background: #3d3d3d;
+    color: var(--cor-metal);
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 40px;
+    
+    /* Borda de Metal */
+    border-top: 5px solid var(--cor-metal);
+    font-size: 0.9em;
+    font-family: "Cinzel", serif;
+    letter-spacing: 1px;
+}
+
+/* ------------------------- */
+/* RESPONSIVIDADE MEDIEVAL   */
+/* ------------------------- */
+@media (max-width: 768px) {
+    nav a {
+        display: inline-block;
+        margin: 8px;
+    }
+    .hero h1 {
+        font-size: 2.2em;
+    }
+    .titulo-secao-principal {
+        font-size: 1.8em;
+    }
+    .redacao {
+        /* Reduz a borda em telas menores */
+        border-width: 5px;
+        box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.4);
+    }
+}
