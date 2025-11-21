@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Mapeamento de Melhorias ---
     const mapeamentoMelhorias = {
         'cronica-01': 'ensaio-11', 
-        'cronica-02': 'ensaio-12', // ATUALIZADO
+        'cronica-02': 'ensaio-12', 
         'cronica-03': 'ensaio-13',
         'cronica-04': 'ensaio-14'
         // Crônicas 05 a 10 não têm melhoria correspondente
@@ -75,8 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
 
-            // A introdução só é exibida se for curta (ou seja, se não for a Crônica 01 ou 02)
-            // Se for Crônica 01 ou 02, o corpoTexto já é o texto completo, então a intro fica vazia.
+            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 03 em diante)
             const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02') ? '' : fullText;
             
             exibirRedacaoCompleta(title, introDisplay, corpoCronica, melhoriaHTML);
@@ -92,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (id === 'cronica-01' || id === 'cronica-02') {
              if (!fullText) return '<p>Erro: Conteúdo completo não encontrado no HTML.</p>';
 
-             // Heurística para quebrar o texto em parágrafos para melhor visualização
+             // Heurística para quebrar o texto em parágrafos. 
+             // Usa ponto final, interrogação ou exclamação, seguido por um espaço e uma letra maiúscula.
             const paragraphs = fullText.split(/(?<=[.?!])\s+(?=[A-ZÊÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÜÇ])/g);
             return paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
         }
