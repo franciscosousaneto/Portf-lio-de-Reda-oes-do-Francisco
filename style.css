@@ -1,100 +1,44 @@
-/* ------------------------- */
-/* MODAL (VISUALIZAÇÃO COMPLETA) */
-/* ------------------------- */
+/* ... (Seu código CSS anterior) ... */
 
-/* O Fundo escuro que cobre toda a tela */
-.redacao-modal {
+/* Estilo Medieval */
+body {
+    font-family: "Old Standard TT", serif;       
+    background: #5d4a3b;                     
+    color: var(--cor-tinta);
+    line-height: 1.6;
+
+    /* NOVO: Imagens de Fundo Místicas */
+    /* Você deve usar imagens de domínio público (ex: silhuetas de dragão e grifo). */
+    /* PLACEHOLDER: Substitua 'dragao.png' e 'grifo.png' por URLs reais. */
+    background-image: 
+        url('URL_DA_SILHUETA_DO_DRAGAO.png'),
+        url('URL_DA_SILHUETA_DO_GRIFO.png'); 
+    
+    /* Configurações das Imagens */
+    background-repeat: no-repeat, no-repeat;
+    background-position: top 5% left 20%, bottom 10% right 15%; /* Posições diferentes */
+    background-size: 300px, 250px; /* Tamanho das criaturas */
+    background-attachment: fixed; /* Mantém as criaturas fixas ao rolar */
+    
+    /* Um pequeno filtro para escurecer e dar um ar místico */
+    filter: brightness(0.95); 
+}
+
+/* NOVO: Estilo mais discreto (Dark Overlay) nas imagens para simular silhuetas */
+/* Este é um hack CSS para clarear/escurecer as imagens diretamente, se elas forem SVG/PNG com transparência */
+/* Caso as imagens sejam coloridas, use um software de edição ou altere o background-blend-mode se necessário. */
+/* Para garantir que não atrapalhe a leitura, vamos adicionar uma cor de sobreposição sutil na cor de pedra. */
+body::before {
+    content: '';
     position: fixed;
-    z-index: 1000; /* Garante que está acima de tudo */
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Permite scrollar se o conteúdo for grande */
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    /* Cor de sobreposição da pedra com muita transparência (para deixar o fundo sutil) */
+    background-color: rgba(93, 74, 59, 0.4); 
+    z-index: -1; 
 }
 
-/* O "Pergaminho Completo" que contém o texto */
-.modal-content {
-    /* Herda o estilo do pergaminho principal */
-    background: var(--cor-pergaminho);
-    color: var(--cor-tinta);
-    max-width: 800px;
-    padding: 50px;
-    border: 15px solid var(--cor-couro); /* Borda mais grossa */
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9); /* Sombra dramática */
-    position: relative;
-    border-radius: 0;
-    
-    /* Animação simples de entrada */
-    transform: scale(0.9);
-    opacity: 0;
-    animation: fade-in-zoom 0.3s forwards;
-}
 
-/* Animação do modal */
-@keyframes fade-in-zoom {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Botão de Fechar */
-.fechar-btn {
-    color: var(--cor-tinta);
-    float: right;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    line-height: 1;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-.fechar-btn:hover,
-.fechar-btn:focus {
-    color: var(--cor-vinho);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Estilos de Texto dentro do Modal */
-.modal-content .titulo-capitulo {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.modal-content .introducao-modal {
-    font-style: italic;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    text-indent: 0; /* Remove a indentação para a introdução */
-}
-
-.modal-content .corpo-texto {
-    /* Mantém o estilo de parágrafo com indentação */
-    text-indent: 30px;
-    margin-bottom: 1.5em;
-    line-height: 1.7;
-    text-align: justify;
-}
-
-.linha-tinta {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(61, 42, 27, 0), rgba(61, 42, 27, 0.75), rgba(61, 42, 27, 0));
-    margin: 20px 0;
-}
+/* ... (Resto do seu CSS, incluindo o MODAL) ... */
