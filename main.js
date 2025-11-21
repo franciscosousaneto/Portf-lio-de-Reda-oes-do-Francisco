@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- Mapeamento de Melhorias ---
     const mapeamentoMelhorias = {
-        'cronica-01': 'ensaio-11', // NOVO TEMA
-        'cronica-02': 'ensaio-12',
+        'cronica-01': 'ensaio-11', 
+        'cronica-02': 'ensaio-12', // ATUALIZADO
         'cronica-03': 'ensaio-13',
         'cronica-04': 'ensaio-14'
         // Crônicas 05 a 10 não têm melhoria correspondente
@@ -54,17 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
         article.addEventListener('click', function() {
             const articleId = this.id;
             const title = this.querySelector('.titulo-capitulo').innerText;
-            const intro = this.querySelector('p').innerText;
+            const fullText = this.querySelector('p').innerText.trim(); 
             
-            // Verifica se é uma Crônica com Melhoria Mapeada
             const ensaioId = mapeamentoMelhorias[articleId];
             
             // Obtém o corpo da Crônica
-            const corpoCronica = generateCorpoTexto(articleId, title);
+            const corpoCronica = generateCorpoTexto(articleId, title, fullText);
 
             let melhoriaHTML = '';
             if (ensaioId) {
-                // Se houver Ensaio correspondente, pega seus dados para a melhoria
                 const ensaioElement = document.getElementById(ensaioId);
                 const ensaioTitle = ensaioElement.querySelector('.titulo-capitulo').innerText;
                 const corpoEnsaio = generateCorpoTexto(ensaioId, ensaioTitle);
@@ -77,27 +75,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
 
-            exibirRedacaoCompleta(title, intro, corpoCronica, melhoriaHTML);
+            // A introdução só é exibida se for curta (ou seja, se não for a Crônica 01 ou 02)
+            // Se for Crônica 01 ou 02, o corpoTexto já é o texto completo, então a intro fica vazia.
+            const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02') ? '' : fullText;
+            
+            exibirRedacaoCompleta(title, introDisplay, corpoCronica, melhoriaHTML);
         });
     });
 
     /**
-     * Gera o texto completo (simulado ou real) da redação.
+     * Gera o texto completo (simulado ou real) da redação, formatando-o em parágrafos.
      */
-    function generateCorpoTexto(id, title) {
-        // --- CONTEÚDO REAL DA CRÔNICA 01 ---
-        if (id === 'cronica-01') {
-             const textoCompleto = `
-                Nós últimos anos, tem se tornado cada vez mais comum ver jovens, inclusive menores de idade, realizando diversos tipos de procedimentos estéticos como harmonização facial, rinoplastia e botox. Esse fenômeno é impulsionado, principalmente, pela influência das redes sociais, que idealizam padrões de beleza muitas vezes inatingíveis. Filtros e edições de imagem criam modelos artificiais, levando muitos a acreditar que precisam de mudanças corporais para poder se valorizem dentro da sociedade contemporânea.
-                
-                Outro fator que contribui para essa tendência é a maior acessibilidade aos procedimentos. Avanços tecnológicos permitiram intervenções menos evasivas, com recuperação rápida e custos mais baixos. Com isso, a estética deixou de ser vista como algo restrito a celebridades, passando a ser recebido como parte do "autocuidado". Portanto, essa normalização pode fazer com que os riscos físicos e psicológicos cresçam, sobretudo entre aqueles que estão em formação de identidade. 
-                
-                Do ponto de vista da saúde mental, a pressão pra atender aos padrões estéticos pode gerar sérias consequências. A ONU para o aumento de casos de ansiedade, depressão e distúrbios alimentares relacionados a autoimagem, especialmente entre os jovens. A insatisfação c o próprio corpo, alimentada por comparações, pode levar por uma busca compulsiva por procedimentos, muitas vezes sem a necessidade médica.
-                
-                Desse forma, o crescimento da procura por intervenções médicas entre os jovens é resultado de um contexto sociocultural que valoriza excessivamente a aparência. Para evitar essa problemática, é essencial promover a educação midiática, incentivar a aceitação da diversidade corporal e garantir que qualquer procedimento seja feito com orientação profissional, priorizando sempre o bem-estar físico e mental.
-            `;
-            // Formata o texto em parágrafos HTML
-            return textoCompleto.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+    function generateCorpoTexto(id, title, fullText = null) {
+        
+        // --- CONTEÚDO REAL DA CRÔNICA 01 e 02 (Formata o texto pego do HTML) ---
+        if (id === 'cronica-01' || id === 'cronica-02') {
+             if (!fullText) return '<p>Erro: Conteúdo completo não encontrado no HTML.</p>';
+
+             // Heurística para quebrar o texto em parágrafos para melhor visualização
+            const paragraphs = fullText.split(/(?<=[.?!])\s+(?=[A-ZÊÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÜÇ])/g);
+            return paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
         }
         
         // --- CONTEÚDO SIMULADO DO ENSAIO 11 (MELHORIA 1) ---
@@ -105,6 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return `
                 <p>O Ensaio 11 (A Ética da Imagem na Era Digital) aprofunda a discussão da Crônica 01, movendo o foco da descrição do fenômeno para a sua validação ética e social. Ele argumenta que a busca por procedimentos estéticos entre jovens não é apenas um resultado da pressão social, mas sim uma manifestação da crise de identidade e da mercantilização do corpo na sociedade de consumo.</p>
                 <p>O conceito de "autocuidado" é aqui desconstruído, sugerindo que, em muitos casos, ele mascara uma compulsão por conformidade, incentivada pelo algoritmo das redes sociais. A redação aprimorada propõe uma estrutura regulatória mais rígida e enfatiza a responsabilidade dos profissionais de saúde e dos pais na proteção da integridade psicológica de menores, em contraste com a simples recomendação de "orientação profissional".</p>
+            `;
+        }
+        
+        // --- CONTEÚDO SIMULADO DO ENSAIO 12 (MELHORIA 2) ---
+        if (id === 'ensaio-12') {
+            return `
+                <p>O Ensaio 12 (A Modernidade Líquida e a Inclusão Efetiva) expande a crítica à mera "efetividade das políticas públicas" mencionada na Crônica 02, focando na natureza volátil e superficial da solidariedade na sociedade líquida de Bauman. Ele argumenta que a inclusão exige mais do que rampas e cotas; ela demanda uma reestruturação do tempo e do valor social, onde a lentidão e a diversidade não sejam vistas como ineficiência, mas como riqueza humana.</p>
+                <p>A redação aprimorada sugere que a invisibilidade das pessoas com deficiência é um sintoma da incapacidade da sociedade moderna de lidar com a diferença de forma permanente e integrada, preferindo soluções temporárias ou puramente burocráticas que falham em mudar a atitude cultural subjacente.</p>
             `;
         }
 
@@ -123,15 +128,17 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Injeta o conteúdo (Crônica + Melhoria opcional) na seção de leitura e navega.
      */
-    function exibirRedacaoCompleta(title, intro, corpoTexto, melhoriaHTML = '') {
+    function exibirRedacaoCompleta(title, introDisplay, corpoTexto, melhoriaHTML = '') {
         const areaLeitura = document.getElementById('area-leitura-completa');
         const containerLeitura = areaLeitura.querySelector('.container-leitura');
         
+        const introElement = introDisplay ? `<p class="introducao-modal">${introDisplay}</p>` : '';
+
         const contentHTML = `
             <a href="#conteudo" id="btn-voltar-topo" class="btn-voltar">⬆️ Voltar à Lista de Crônicas</a>
             
-            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)')}</h2>
-            <p class="introducao-modal">${intro}</p>
+            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)').replace('(Melhoria 2)', '(Original)')}</h2>
+            ${introElement}
             <hr class="linha-tinta">
             ${corpoTexto}
             
