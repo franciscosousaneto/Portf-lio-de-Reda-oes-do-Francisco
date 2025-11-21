@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="introducao-modal">${intro}</p>
             <hr class="linha-tinta">
             ${corpoTexto}
-            <a href="#conteudo" class="btn-voltar" style="margin-top: 30px;">⬆️ Voltar ao Topo da Masmorra</a>
+            <a href="#conteudo" class="btn-voltar" style="margin-top: 30px;">⬆️ Voltar ao Topo da Lista</a>
         `;
 
         containerLeitura.innerHTML = contentHTML;

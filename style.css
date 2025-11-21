@@ -2,11 +2,11 @@
 /* CONFIGURAÇÕES GERAIS      */
 /* ------------------------- */
 :root {
-    --cor-pergaminho: #1a1a1a;      /* Fundo Principal - Pedra Escura/Negra */
-    --cor-tinta: #f0f0f0;           /* Texto Principal - Cinza Claro/Osso */
-    --cor-couro: #444444;           /* Borda/Destaque - Ferro Velho */
-    --cor-metal: #777777;           /* Detalhes/Rodapé - Metal Envelhecido */
-    --cor-vinho: #cc4444;           /* Títulos/Ênfase - Vermelho de Fogo */
+    --cor-pergaminho: #f7e6c3;      /* Fundo Principal - Pergaminho/Papel */
+    --cor-tinta: #3d2a1b;           /* Texto Principal - Tinta/Sépia */
+    --cor-couro: #704214;           /* Borda/Destaque - Couro Marrom */
+    --cor-metal: #a6a6a6;           /* Detalhes/Rodapé - Metal Envelhecido */
+    --cor-vinho: #800020;           /* Títulos/Ênfase - Vinho Escuro */
 }
 
 * {
@@ -18,21 +18,20 @@
 
 body {
     font-family: "Old Standard TT", serif;       
-    background: #111111;                      /* Preto total para fundo de masmorra */
+    background: #5d4a3b;                      /* Fundo de madeira ou pedra escura */
     color: var(--cor-tinta);
     line-height: 1.6;
 
-    /* Imagens de Fundo Místicas (substitua as URLs e garanta o Domínio Público) */
+    /* 🐉 PIXEL ART BACKGROUND (Substitua a URL pela imagem de dragão/monstro) 🐉 */
     background-image: 
-        url('URL_DA_SILHUETA_DO_DRAGAO.png'),
-        url('URL_DA_SILHUETA_DO_GRIFO.png'); 
+        url('URL_PADRAO_PIXEL_ART_MONSTRO.png'); 
     
-    background-repeat: no-repeat, no-repeat;
-    background-position: top 5% left 20%, bottom 10% right 15%; 
-    background-size: 300px, 250px; 
+    background-repeat: repeat; 
+    background-size: 50px; /* Define o tamanho do tile para dar o efeito de pixel art */
     background-attachment: fixed;
 }
 
+/* Sobreposição sutil para o fundo */
 body::before {
     content: '';
     position: fixed;
@@ -40,7 +39,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(93, 74, 59, 0.4); 
     z-index: -1; 
 }
 
@@ -48,11 +47,12 @@ body::before {
 /* CABEÇALHO (ESTANDARTE)    */
 /* ------------------------- */
 .hero {
-    background: #2c2c2c;
-    color: var(--cor-tinta);
+    background: var(--cor-couro);
+    color: var(--cor-pergaminho);
+    text-align: center;
     padding: 70px 20px 50px 20px;
     margin-bottom: 25px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.8);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
     border-bottom: 5px solid var(--cor-metal); 
 }
 
@@ -60,19 +60,21 @@ body::before {
 
 .hero h1 {
     font-size: 3.2em;
+    font-weight: 700;
     font-family: "Cinzel", serif;
-    color: var(--cor-tinta);
+    color: var(--cor-pergaminho);
     text-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
 }
 
 /* ------------------------- */
-/* MENU SUPERIOR (FERRO)     */
+/* MENU SUPERIOR (TIRA DE COURO) */
 /* ------------------------- */
 nav {
-    background: #222222;
+    background: var(--cor-tinta);
     padding: 12px 0;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.8);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -86,7 +88,7 @@ nav {
 .lista-menu li { display: inline; }
 
 nav a {
-    color: var(--cor-tinta);
+    color: var(--cor-pergaminho);
     text-decoration: none;
     margin: 0 14px;
     font-size: 1.05em;
@@ -95,12 +97,10 @@ nav a {
     cursor: pointer;
 }
 
-nav a:hover {
-    background: var(--cor-vinho); 
-}
+nav a:hover { background: var(--cor-vinho); }
 
 /* ------------------------- */
-/* CONTEÚDO E CARTÕES (LAJES DE PEDRA) */
+/* CONTEÚDO E CARTÕES (PERGAMINHO) */
 /* ------------------------- */
 .container {
     max-width: 1000px;
@@ -114,26 +114,26 @@ nav a:hover {
     color: var(--cor-vinho);
     text-align: center;
     margin: 40px 0 25px 0;
-    text-shadow: 1px 1px 4px rgba(255, 100, 100, 0.5); /* Brilho de fogo */
-    border-bottom: 2px dashed var(--cor-vinho);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border-bottom: 2px dashed var(--cor-couro);
     padding-bottom: 10px;
 }
 
 .redacao {
-    /* Laje de pedra escura */
-    background: #222222;
+    /* Fundo de Pergaminho e borda de Couro */
+    background: var(--cor-pergaminho);
     color: var(--cor-tinta);
     padding: 30px;
     margin-bottom: 40px;
-    border: 3px solid var(--cor-couro); /* Borda de ferro */
-    box-shadow: 0 0 10px rgba(204, 68, 68, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.8);
+    border: 8px solid var(--cor-couro);
+    box-shadow: 12px 12px 0px 0px rgba(0,0,0,0.4);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer; 
 }
 
 .redacao:hover {
-    transform: scale(1.01); 
-    box-shadow: 0 0 20px rgba(204, 68, 68, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.8);
+    transform: translate(-3px, -3px); 
+    box-shadow: 15px 15px 0px 0px rgba(0,0,0,0.5);
 }
 
 .redacao h3 { 
@@ -154,15 +154,15 @@ nav a:hover {
 .masmorra-leitura {
     min-height: 100vh;
     padding: 50px 20px;
-    background: #0d0d0d; 
-    color: var(--cor-tinta);
+    background: var(--cor-tinta); /* Fundo escuro para destacar o foco na leitura */
+    color: var(--cor-pergaminho);
 }
 
 .container-leitura {
     max-width: 900px;
     margin: 0 auto;
     padding: 40px;
-    background: #1e1e1e; 
+    background: #503c2a; /* Painel de leitura (madeira escura) */
     border: 5px solid var(--cor-couro);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
@@ -170,7 +170,7 @@ nav a:hover {
 .btn-voltar {
     display: inline-block;
     background: var(--cor-vinho);
-    color: var(--cor-tinta);
+    color: var(--cor-pergaminho);
     padding: 10px 20px;
     text-decoration: none;
     font-family: "Cinzel", serif;
@@ -181,16 +181,16 @@ nav a:hover {
 }
 
 .btn-voltar:hover {
-    background: #ff6347; 
+    background: #b33a3a; 
     transform: translateY(-2px);
 }
 
 .masmorra-leitura .titulo-capitulo {
-    color: var(--cor-vinho);
+    color: var(--cor-pergaminho);
     font-family: "Cinzel", serif;
     font-size: 3em;
     margin-bottom: 15px;
-    text-shadow: 1px 1px 5px rgba(204, 68, 68, 0.8);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .masmorra-leitura .introducao-modal {
@@ -209,9 +209,10 @@ nav a:hover {
 .linha-tinta {
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(68, 68, 68, 0), rgba(119, 119, 119, 0.75), rgba(68, 68, 68, 0));
+    background-image: linear-gradient(to right, rgba(247, 230, 195, 0), rgba(247, 230, 195, 0.75), rgba(247, 230, 195, 0));
     margin: 20px 0;
 }
+
 
 /* ------------------------- */
 /* RODAPÉ (BASE DE PEDRA)    */
