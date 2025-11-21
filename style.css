@@ -1,33 +1,40 @@
-/* ... (Seu código CSS anterior) ... */
+/* ------------------------- */
+/* CONFIGURAÇÕES GERAIS      */
+/* ------------------------- */
+:root {
+    --cor-pergaminho: #f7e6c3;      /* Fundo Principal - Pergaminho */
+    --cor-tinta: #3d2a1b;           /* Texto Principal - Tinta/Sépia */
+    --cor-couro: #704214;           /* Borda/Destaque - Couro Marrom */
+    --cor-metal: #a6a6a6;           /* Detalhes/Rodapé - Metal Envelhecido */
+    --cor-vinho: #800020;           /* Títulos/Ênfase - Vinho Escuro */
+}
 
-/* Estilo Medieval */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Faz com que a seção clicável se comporte como um botão */
+    cursor: default; 
+}
+
 body {
     font-family: "Old Standard TT", serif;       
-    background: #5d4a3b;                     
+    background: #5d4a3b;                      /* Fundo de pedra/madeira escura */
     color: var(--cor-tinta);
     line-height: 1.6;
 
-    /* NOVO: Imagens de Fundo Místicas */
-    /* Você deve usar imagens de domínio público (ex: silhuetas de dragão e grifo). */
-    /* PLACEHOLDER: Substitua 'dragao.png' e 'grifo.png' por URLs reais. */
+    /* Imagens de Fundo Místicas (substitua as URLs) */
     background-image: 
         url('URL_DA_SILHUETA_DO_DRAGAO.png'),
         url('URL_DA_SILHUETA_DO_GRIFO.png'); 
     
-    /* Configurações das Imagens */
     background-repeat: no-repeat, no-repeat;
-    background-position: top 5% left 20%, bottom 10% right 15%; /* Posições diferentes */
-    background-size: 300px, 250px; /* Tamanho das criaturas */
-    background-attachment: fixed; /* Mantém as criaturas fixas ao rolar */
-    
-    /* Um pequeno filtro para escurecer e dar um ar místico */
-    filter: brightness(0.95); 
+    background-position: top 5% left 20%, bottom 10% right 15%; 
+    background-size: 300px, 250px; 
+    background-attachment: fixed;
 }
 
-/* NOVO: Estilo mais discreto (Dark Overlay) nas imagens para simular silhuetas */
-/* Este é um hack CSS para clarear/escurecer as imagens diretamente, se elas forem SVG/PNG com transparência */
-/* Caso as imagens sejam coloridas, use um software de edição ou altere o background-blend-mode se necessário. */
-/* Para garantir que não atrapalhe a leitura, vamos adicionar uma cor de sobreposição sutil na cor de pedra. */
+/* Sobreposição para suavizar as imagens de fundo e manter o tema escuro */
 body::before {
     content: '';
     position: fixed;
@@ -35,10 +42,255 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Cor de sobreposição da pedra com muita transparência (para deixar o fundo sutil) */
     background-color: rgba(93, 74, 59, 0.4); 
     z-index: -1; 
 }
 
+/* ------------------------- */
+/* CABEÇALHO (ESTANDARTE)    */
+/* ------------------------- */
+.hero {
+    background: var(--cor-couro);
+    color: var(--cor-pergaminho);
+    text-align: center;
+    padding: 70px 20px 50px 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    border-bottom: 5px solid var(--cor-metal); 
+}
 
-/* ... (Resto do seu CSS, incluindo o MODAL) ... */
+.hero a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hero h1 {
+    font-size: 3.2em;
+    font-weight: 700;
+    font-family: "Cinzel", serif;
+    color: var(--cor-pergaminho);
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+}
+
+/* ------------------------- */
+/* MENU SUPERIOR (TIRA DE COURO) */
+/* ------------------------- */
+nav {
+    background: var(--cor-tinta);
+    padding: 12px 0;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-top: 2px solid var(--cor-metal);
+    border-bottom: 2px solid var(--cor-metal);
+}
+
+.lista-menu {
+    list-style: none;
+    display: inline-block;
+}
+
+.lista-menu li {
+    display: inline;
+}
+
+nav a {
+    color: var(--cor-pergaminho);
+    text-decoration: none;
+    margin: 0 14px;
+    font-size: 1.05em;
+    padding: 8px 14px;
+    transition: background 0.3s;
+    font-weight: 400;
+    letter-spacing: 1px;
+    /* Torna o link mais parecido com um botão de menu */
+    cursor: pointer;
+}
+
+nav a:hover {
+    background: var(--cor-vinho); 
+}
+
+/* ------------------------- */
+/* CONTEÚDO E CARTÕES (PERGAMINHO) */
+/* ------------------------- */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.titulo-secao-principal {
+    font-family: "Cinzel", serif;
+    font-size: 2.5em;
+    color: var(--cor-vinho);
+    text-align: center;
+    margin: 40px 0 25px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border-bottom: 2px dashed var(--cor-couro);
+    padding-bottom: 10px;
+}
+
+.redacao {
+    /* Fundo de Pergaminho e borda de Couro */
+    background: var(--cor-pergaminho);
+    color: var(--cor-tinta);
+    padding: 30px;
+    margin-bottom: 40px;
+    border: 8px solid var(--cor-couro);
+    box-shadow: 12px 12px 0px 0px rgba(0,0,0,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    /* Adiciona o indicador de clicável nas crônicas/ensaios */
+    cursor: pointer; 
+}
+
+.redacao:hover {
+    transform: translate(-3px, -3px); /* Efeito sutil de levantar */
+    box-shadow: 15px 15px 0px 0px rgba(0,0,0,0.5);
+}
+
+.redacao h3 { 
+    color: var(--cor-vinho);
+    margin-bottom: 12px;
+    font-family: "Cinzel", serif;
+    font-size: 1.8em;
+    text-transform: uppercase;
+}
+
+.redacao p {
+    line-height: 1.8;
+    text-indent: 30px; 
+}
+
+/* ------------------------- */
+/* RODAPÉ (BASE DE PEDRA)    */
+/* ------------------------- */
+footer {
+    background: #3d3d3d;
+    color: var(--cor-metal);
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 5px solid var(--cor-metal);
+    font-size: 0.9em;
+    font-family: "Cinzel", serif;
+    letter-spacing: 1px;
+}
+
+/* ------------------------- */
+/* MODAL (VISUALIZAÇÃO COMPLETA) */
+/* ------------------------- */
+
+.redacao-modal {
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; 
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(5px); /* Efeito de névoa */
+}
+
+.modal-content {
+    background: var(--cor-pergaminho);
+    color: var(--cor-tinta);
+    max-width: 800px;
+    width: 90%;
+    padding: 50px;
+    border: 15px solid var(--cor-couro);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    position: relative;
+    
+    transform: scale(0.9);
+    opacity: 0;
+    animation: fade-in-zoom 0.3s forwards;
+}
+
+@keyframes fade-in-zoom {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fechar-btn {
+    color: var(--cor-tinta);
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.fechar-btn:hover,
+.fechar-btn:focus {
+    color: var(--cor-vinho);
+}
+
+.modal-content .titulo-capitulo {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.modal-content .introducao-modal {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-indent: 0; 
+}
+
+.modal-content .corpo-texto {
+    text-indent: 30px;
+    margin-bottom: 1.5em;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.linha-tinta {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(61, 42, 27, 0), rgba(61, 42, 27, 0.75), rgba(61, 42, 27, 0));
+    margin: 20px 0;
+}
+
+/* ------------------------- */
+/* RESPONSIVIDADE MEDIEVAL   */
+/* ------------------------- */
+@media (max-width: 768px) {
+    nav a {
+        display: inline-block;
+        margin: 8px;
+        padding: 6px 10px;
+    }
+    .hero h1 {
+        font-size: 2.2em;
+    }
+    .redacao, .modal-content {
+        padding: 20px;
+        border-width: 5px;
+        box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        margin: 10px;
+    }
+}
