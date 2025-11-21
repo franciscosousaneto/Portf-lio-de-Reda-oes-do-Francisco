@@ -18,7 +18,7 @@
 
 body {
     font-family: "Old Standard TT", serif;       
-    background: #5d4a3b;                      /* Fundo de madeira ou pedra escura */
+    background: #5d4a3b;                      
     color: var(--cor-tinta);
     line-height: 1.6;
 
@@ -27,11 +27,10 @@ body {
         url('URL_PADRAO_PIXEL_ART_MONSTRO.png'); 
     
     background-repeat: repeat; 
-    background-size: 50px; /* Define o tamanho do tile para dar o efeito de pixel art */
+    background-size: 50px; 
     background-attachment: fixed;
 }
 
-/* Sobreposição sutil para o fundo */
 body::before {
     content: '';
     position: fixed;
@@ -120,7 +119,6 @@ nav a:hover { background: var(--cor-vinho); }
 }
 
 .redacao {
-    /* Fundo de Pergaminho e borda de Couro */
     background: var(--cor-pergaminho);
     color: var(--cor-tinta);
     padding: 30px;
@@ -147,14 +145,12 @@ nav a:hover { background: var(--cor-vinho); }
 .redacao p { line-height: 1.8; text-indent: 30px; }
 
 
-/* ------------------------- */
-/* ÁREA DE LEITURA COMPLETA  */
-/* ------------------------- */
+/* --- ESTILOS ESPECÍFICOS PARA O MODO DE LEITURA --- */
 
 .masmorra-leitura {
     min-height: 100vh;
     padding: 50px 20px;
-    background: var(--cor-tinta); /* Fundo escuro para destacar o foco na leitura */
+    background: var(--cor-tinta); 
     color: var(--cor-pergaminho);
 }
 
@@ -162,7 +158,7 @@ nav a:hover { background: var(--cor-vinho); }
     max-width: 900px;
     margin: 0 auto;
     padding: 40px;
-    background: #503c2a; /* Painel de leitura (madeira escura) */
+    background: #503c2a; 
     border: 5px solid var(--cor-couro);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
@@ -185,12 +181,24 @@ nav a:hover { background: var(--cor-vinho); }
     transform: translateY(-2px);
 }
 
+/* Título da Crônica Original */
 .masmorra-leitura .titulo-capitulo {
     color: var(--cor-pergaminho);
     font-family: "Cinzel", serif;
     font-size: 3em;
     margin-bottom: 15px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Título da Melhoria (Ensaio) */
+.titulo-melhoria {
+    font-family: "Cinzel", serif;
+    font-size: 2em;
+    color: #ffcc00; /* Dourado para indicar "Melhoria" */
+    margin: 50px 0 20px 0;
+    border-top: 3px double var(--cor-metal);
+    padding-top: 20px;
+    text-align: center;
 }
 
 .masmorra-leitura .introducao-modal {
