@@ -40,7 +40,6 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Pode adicionar uma textura sutil de pedra aqui */
     background-color: rgba(0, 0, 0, 0.6); 
     z-index: -1; 
 }
@@ -49,7 +48,7 @@ body::before {
 /* CABEÇALHO (ESTANDARTE)    */
 /* ------------------------- */
 .hero {
-    background: #2c2c2c; /* Pedra mais clara */
+    background: #2c2c2c;
     color: var(--cor-tinta);
     padding: 70px 20px 50px 20px;
     margin-bottom: 25px;
@@ -57,7 +56,14 @@ body::before {
     border-bottom: 5px solid var(--cor-metal); 
 }
 
-/* ... (Estilos de texto do Cabeçalho) ... */
+.hero a { text-decoration: none; color: inherit; }
+
+.hero h1 {
+    font-size: 3.2em;
+    font-family: "Cinzel", serif;
+    color: var(--cor-tinta);
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+}
 
 /* ------------------------- */
 /* MENU SUPERIOR (FERRO)     */
@@ -65,18 +71,28 @@ body::before {
 nav {
     background: #222222;
     padding: 12px 0;
+    text-align: center;
     box-shadow: 0 3px 10px rgba(0,0,0,0.8);
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
     border-top: 2px solid var(--cor-metal);
     border-bottom: 2px solid var(--cor-metal);
-    /* ... (Estilos de lista e links) ... */
 }
+
+.lista-menu { list-style: none; display: inline-block; }
+.lista-menu li { display: inline; }
 
 nav a {
     color: var(--cor-tinta);
-    /* ... */
+    text-decoration: none;
+    margin: 0 14px;
+    font-size: 1.05em;
+    padding: 8px 14px;
+    transition: background 0.3s;
+    cursor: pointer;
 }
 
 nav a:hover {
@@ -93,7 +109,10 @@ nav a:hover {
 }
 
 .titulo-secao-principal {
+    font-family: "Cinzel", serif;
+    font-size: 2.5em;
     color: var(--cor-vinho);
+    text-align: center;
     margin: 40px 0 25px 0;
     text-shadow: 1px 1px 4px rgba(255, 100, 100, 0.5); /* Brilho de fogo */
     border-bottom: 2px dashed var(--cor-vinho);
@@ -107,30 +126,35 @@ nav a:hover {
     padding: 30px;
     margin-bottom: 40px;
     border: 3px solid var(--cor-couro); /* Borda de ferro */
-    /* Sombra com brilho de fogo/magia */
     box-shadow: 0 0 10px rgba(204, 68, 68, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.8);
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer; 
 }
 
 .redacao:hover {
-    transform: scale(1.01); /* Efeito sutil de pulsar */
+    transform: scale(1.01); 
     box-shadow: 0 0 20px rgba(204, 68, 68, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 .redacao h3 { 
     color: var(--cor-vinho);
-    /* ... */
+    margin-bottom: 12px;
+    font-family: "Cinzel", serif;
+    font-size: 1.8em;
+    text-transform: uppercase;
 }
 
+.redacao p { line-height: 1.8; text-indent: 30px; }
+
+
 /* ------------------------- */
-/* ÁREA DE LEITURA (MASMORRA)*/
+/* ÁREA DE LEITURA COMPLETA  */
 /* ------------------------- */
 
 .masmorra-leitura {
     min-height: 100vh;
     padding: 50px 20px;
-    background: #0d0d0d; /* Fundo mais escuro para a seção de leitura */
+    background: #0d0d0d; 
     color: var(--cor-tinta);
 }
 
@@ -138,7 +162,7 @@ nav a:hover {
     max-width: 900px;
     margin: 0 auto;
     padding: 40px;
-    background: #1e1e1e; /* Painel de leitura */
+    background: #1e1e1e; 
     border: 5px solid var(--cor-couro);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
@@ -157,11 +181,11 @@ nav a:hover {
 }
 
 .btn-voltar:hover {
-    background: #ff6347; /* Tom de fogo */
+    background: #ff6347; 
     transform: translateY(-2px);
 }
 
-.masmorra-leitura h2 {
+.masmorra-leitura .titulo-capitulo {
     color: var(--cor-vinho);
     font-family: "Cinzel", serif;
     font-size: 3em;
@@ -169,9 +193,24 @@ nav a:hover {
     text-shadow: 1px 1px 5px rgba(204, 68, 68, 0.8);
 }
 
+.masmorra-leitura .introducao-modal {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-indent: 0; 
+}
+
 .masmorra-leitura p {
     line-height: 1.8;
     margin-bottom: 1em;
+    text-indent: 30px;
+}
+
+.linha-tinta {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(68, 68, 68, 0), rgba(119, 119, 119, 0.75), rgba(68, 68, 68, 0));
+    margin: 20px 0;
 }
 
 /* ------------------------- */
@@ -180,7 +219,11 @@ nav a:hover {
 footer {
     background: #3d3d3d;
     color: var(--cor-metal);
-    /* ... */
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 5px solid var(--cor-metal);
+    font-size: 0.9em;
+    font-family: "Cinzel", serif;
+    letter-spacing: 1px;
 }
-
-/* ... (Media Queries) ... */
