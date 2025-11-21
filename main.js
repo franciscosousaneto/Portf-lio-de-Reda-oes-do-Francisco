@@ -1,24 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const menuNav = document.getElementById('menu');
     
-    // --- Dados do Menu ---
+    // --- Dados do Menu (mesma lógica) ---
     const links = [
         { nome: '🏰 Início', href: '#inicio' },
         { nome: '📜 Crônicas', href: '#cronicas' },
         { nome: '🖋️ Ensaios', href: '#ensaios' },
     ];
     
-    // Adicionar links para cada redação (para o menu)
     for (let i = 1; i <= 10; i++) {
         links.push({ nome: `Crônica ${i.toString().padStart(2, '0')}`, href: `#cronica-${i.toString().padStart(2, '0')}` });
     }
     for (let i = 11; i <= 14; i++) {
         links.push({ nome: `Ensaio ${i.toString().padStart(2, '0')}`, href: `#ensaio-${i}` });
     }
-
     links.push({ nome: '🔍 Sobre o Sábio', href: '#sobre' });
 
-    // --- 1. Criação do HTML do Menu e Inserção ---
+    // --- 1. Criação do HTML do Menu e Inserção (mesma lógica) ---
     let menuHTML = '<ul class="lista-menu">';
     links.forEach(link => {
         menuHTML += `<li><a href="${link.href}" data-target="${link.href}" class="link-menu">${link.nome}</a></li>`;
@@ -26,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     menuHTML += '</ul>';
     menuNav.innerHTML = menuHTML;
 
-    // --- 2. Scroll Suave ---
+    // --- 2. Scroll Suave para o Menu (mesma lógica) ---
     document.querySelectorAll('#menu a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault(); 
@@ -42,76 +40,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // --- 3. Função Modal (Exibir Redação Completa) ---
+    // --- 3. Função de Navegação para Redação Completa ---
     
     // Anexa o listener de clique a todas as crônicas e ensaios
     document.querySelectorAll('.cronica, .ensaio').forEach(article => {
         article.addEventListener('click', function() {
             const title = this.querySelector('.titulo-capitulo').innerText;
             const intro = this.querySelector('p').innerText;
-            exibirRedacaoCompleta(title, intro);
+            
+            // Simula o corpo longo da redação (que seria carregado do servidor)
+            const corpoTexto = generateCorpoTexto(); 
+            
+            exibirRedacaoCompleta(title, intro, corpoTexto);
         });
     });
 
     /**
-     * Cria e exibe o modal com o conteúdo simulado da redação.
+     * Gera um texto longo de placeholder para simular o corpo da redação.
+     * Usei um texto com quebras de linha para simular parágrafos.
      */
-    function exibirRedacaoCompleta(title, intro) {
-        // Texto genérico longo para simular o corpo da redação
-        const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. (Repetição para simular texto longo) Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    function generateCorpoTexto() {
+        const lorem = "Em tempos de escuridão e névoa, a coragem era a única moeda. A Cidade Murada jazia sob um cerco espectral, e apenas o som da água pingando nas galerias subterrâneas quebrava o silêncio. A lenda contava que, nas profundezas da Masmorra de Leitura, estava o grimório com a chave para quebrar o feitiço, mas a cada passo, a escuridão se aprofundava e as muralhas pareciam se fechar. Os sussurros dos antigos guardiões ecoavam, testando a sanidade e a força de vontade do escrivão que ousasse descer. \n\n O ferro frio das grades era a única companhia. Não havia pergaminho, apenas a rocha escura. O desafio não era apenas transcrever, mas sobreviver à própria experiência, transformando o medo em tinta. O Desafio da Cidade Murada não era uma batalha de espadas, mas uma guerra de nervos contra a solidão e o peso da história enterrada. A cada palavra registrada, uma fresta de luz se abria, provando que a pena, de fato, era a espada mais poderosa. \n\n A esperança residia no topo, mas a verdade estava abaixo, selada nas profundezas do esquecimento. O grimório, quando encontrado, não continha palavras mágicas, mas sim a história simples e cruel dos homens que construíram o muro. E ao registrar esse fato, o feitiço foi quebrado, não por magia, mas por conhecimento. A luz da razão finalmente penetrou a escuridão da masmorra, e o escrivão pôde finalmente descansar.";
+        return `<p>${lorem.replace(/\n\n/g, '</p><p>')}</p>`;
+    }
+
+    /**
+     * Injeta o conteúdo na seção de leitura e navega até ela.
+     */
+    function exibirRedacaoCompleta(title, intro, corpoTexto) {
+        const areaLeitura = document.getElementById('area-leitura-completa');
+        const containerLeitura = areaLeitura.querySelector('.container-leitura');
         
-        const modalHTML = `
-            <div id="redacao-modal" class="redacao-modal">
-                <div class="modal-content pergaminho-completo">
-                    <button class="fechar-btn" aria-label="Fechar Redação Completa">&times;</button>
-                    <h2 class="titulo-capitulo">${title}</h2>
-                    <p class="introducao-modal">${intro}</p>
-                    <hr class="linha-tinta">
-                    <p class="corpo-texto">${lorem}</p>
-                    <p class="corpo-texto">${lorem}</p>
-                    <p class="corpo-texto">${lorem}</p>
-                    <p class="corpo-texto">${lorem}</p>
-                </div>
-            </div>
+        const contentHTML = `
+            <a href="#conteudo" id="btn-voltar-topo" class="btn-voltar">⬆️ Voltar à Lista de Crônicas</a>
+            <h2 class="titulo-capitulo">${title}</h2>
+            <p class="introducao-modal">${intro}</p>
+            <hr class="linha-tinta">
+            ${corpoTexto}
+            <a href="#conteudo" class="btn-voltar" style="margin-top: 30px;">⬆️ Voltar ao Topo da Masmorra</a>
         `;
 
-        // Insere o modal e trava o scroll da página
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-        document.body.style.overflow = 'hidden'; 
-        
-        // Adiciona eventos de fechamento
-        const modal = document.getElementById('redacao-modal');
-        modal.querySelector('.fechar-btn').addEventListener('click', fecharModal);
-        
-        // Fecha o modal ao clicar no overlay (fora do conteúdo)
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                fecharModal();
-            }
+        containerLeitura.innerHTML = contentHTML;
+        areaLeitura.style.display = 'block';
+
+        // 4. Navegar para a Área de Leitura
+        areaLeitura.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start' 
+        });
+
+        // Adiciona evento de clique para o botão "Voltar à Lista"
+        document.getElementById('btn-voltar-topo').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Oculta a área de leitura e rola para a lista principal
+            areaLeitura.style.display = 'none';
+            document.getElementById('conteudo').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         });
     }
 
-    function fecharModal() {
-        const modal = document.getElementById('redacao-modal');
-        if (modal) {
-            modal.remove();
-            document.body.style.overflow = ''; // Restaura o scroll
-        }
-    }
-
-    // --- 4. Efeito de Aparecimento (Intersection Observer - Opcional) ---
-    // Deixado aqui como um gancho para futuras animações de entrada
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                 // Adicione classes de animação aqui se desejar um fade-in.
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    document.querySelectorAll('.redacao, .hero, .sobre').forEach(section => {
-        observer.observe(section);
-    });
+    // ... (Fim do código) ...
 });
