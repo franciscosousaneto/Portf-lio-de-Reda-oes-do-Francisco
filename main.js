@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
         'cronica-03': 'ensaio-13', 
         'cronica-04': 'ensaio-14',
         'cronica-05': 'ensaio-15',
-        'cronica-06': 'ensaio-16',
+        'cronica-06': 'ensaio-16', // CRÔNICA 06 MAPEADA
         'cronica-07': 'ensaio-17',
         'cronica-08': 'ensaio-18',
         'cronica-09': 'ensaio-19',
         'cronica-10': 'ensaio-20',
-        'cronica-11': 'ensaio-21', // Novo Mapeamento
-        'cronica-12': 'ensaio-22', // Novo Mapeamento
-        'cronica-13': 'ensaio-23', // Novo Mapeamento
-        'cronica-14': 'ensaio-24'  // Novo Mapeamento
+        'cronica-11': 'ensaio-21',
+        'cronica-12': 'ensaio-22',
+        'cronica-13': 'ensaio-23',
+        'cronica-14': 'ensaio-24'
     };
 
     // --- Dados do Menu (Links e Estrutura) ---
@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
 
-            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 06 em diante)
-            // Crônicas 01 a 05 têm o texto completo.
-            const isFullText = (articleId === 'cronica-01' || articleId === 'cronica-02' || articleId === 'cronica-03' || articleId === 'cronica-04' || articleId === 'cronica-05');
+            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 07 em diante)
+            // Crônicas 01 a 06 têm o texto completo.
+            const isFullText = (articleId === 'cronica-01' || articleId === 'cronica-02' || articleId === 'cronica-03' || articleId === 'cronica-04' || articleId === 'cronica-05' || articleId === 'cronica-06');
             const introDisplay = isFullText ? '' : fullText;
             
             exibirRedacaoCompleta(title, introDisplay, corpoCronica, melhoriaHTML);
@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function generateCorpoTexto(id, title, fullText = null) {
         
-        // --- CONTEÚDO REAL DA CRÔNICA 01 a 05 (Formata o texto pego do HTML) ---
-        if (id.startsWith('cronica') && (id === 'cronica-01' || id === 'cronica-02' || id === 'cronica-03' || id === 'cronica-04' || id === 'cronica-05')) {
+        // --- CONTEÚDO REAL DA CRÔNICA 01 a 06 (Formata o texto pego do HTML) ---
+        if (id.startsWith('cronica') && (id === 'cronica-01' || id === 'cronica-02' || id === 'cronica-03' || id === 'cronica-04' || id === 'cronica-05' || id === 'cronica-06')) {
              if (!fullText) return '<p>Erro: Conteúdo completo não encontrado no HTML.</p>';
 
              // Heurística para quebrar o texto em parágrafos. 
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
         }
         
-        // --- CONTEÚDO SIMULADO DOS ENSAIOS E CRÔNICAS PLACEHOLDERS (06-14) ---
+        // --- CONTEÚDO SIMULADO DOS ENSAIOS E CRÔNICAS PLACEHOLDERS (07-14) ---
 
         // MELHORIAS 1-5 (Conteúdo Mantido)
         if (id === 'ensaio-11') {
@@ -127,10 +127,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return `<p>O Ensaio 15 (Logística Reversa e a Responsabilidade Estendida do Produtor) transforma a crítica à ausência de políticas da Crônica 05 em uma proposta de engenharia reversa. Ele discute a Lei 12.305/10 (PNRS) como ferramenta de justiça ambiental, focando na responsabilidade ética dos fabricantes de produtos tecnológicos (Obsolecência Programada).</p><p>A melhoria argumenta que a mera ampliação de pontos de coleta é insuficiente; é preciso redesenhar o ciclo de produção-consumo, incentivando o "design para desmonte" e a remanufatura. O foco passa da simples mitigação do lixo tóxico para a criação de cadeias de valor circulares que protejam os catadores e o meio ambiente desde a concepção do produto.</p>`;
         }
         
-        // MELHORIAS 6-10 (Conteúdo Mantido)
+        // MELHORIA 6 (CRÔNICA 06 ATUALIZADA)
         if (id === 'ensaio-16') {
-            return `<p>O Ensaio 16 (Ética da Ganância e a Corrupção no Comércio) utiliza a narrativa da Crônica 06 como ponto de partida para um exame filosófico da ética econômica. Argumenta-se que a busca desenfreada por lucro, desvinculada da responsabilidade social (a "ganância"), é a base da corrupção sistêmica que desfaz os laços comunitários.</p><p>O ensaio propõe um retorno à filosofia moral de Adam Smith, não apenas focando na "mão invisível" do mercado, mas na necessidade da "simpatia" e da virtude para que o comércio não se torne um banquete de exploração. A Crônica é aqui um espelho do risco da mercantilização total da sociedade.</p>`;
+            return `<p>O Ensaio 16 (Alimentação e a Crise da Soberania Corporal) expande a discussão da Crônica 06, examinando o consumo de ultraprocessados como uma **questão de soberania e justiça alimentar**, e não apenas como um problema de saúde individual.</p><p>A redação aprimorada utiliza conceitos de **Necropolítica e biopoder** para argumentar que a indústria, por meio do baixo custo e do forte apelo publicitário, instrumentaliza a necessidade de nutrição, controlando a saúde e o destino das populações mais vulneráveis. O foco é transferido da "escolha individual" para a **responsabilidade estrutural** do Estado em regulamentar a composição e a publicidade desses produtos (como a rotulagem frontal) e em subsidiar a agricultura familiar, garantindo que o alimento *in natura* não seja um luxo, mas um direito. A melhoria argumenta que o empobrecimento cultural e nutricional é, na verdade, um projeto de dependência alimentar.</p>`;
         }
+        
+        // MELHORIAS 7-10 (Conteúdo Mantido)
         if (id === 'ensaio-17') {
             return `<p>O Ensaio 17 (Ciclos Históricos e a Decadência de Civilizações) eleva a Queda do Antigo Império (Crônica 07) a uma análise meta-histórica. Utilizando Toynbee ou Ibn Khaldun, questiona-se: a decadência é uma fatalidade histórica ou o resultado de escolhas morais e políticas? </p><p>A redação aprimorada foca nos fatores internos: a erosão da coesão social causada pela desigualdade extrema e a arrogância do poder ("o orgulho de milênios") como verdadeiros agentes destrutivos. A Crônica torna-se uma advertência sobre como a hybris (soberba) política precipita o colapso, independentemente das ameaças externas.</p>`;
         }
@@ -144,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return `<p>O Ensaio 20 (O Poder da Ilusão e a Sedução do Cativeiro) utiliza o "Canto da Sereia na Torre" (Crônica 10) para discutir a natureza da ideologia e do controle. A sereia simboliza a ilusão que torna a prisão tolerável, ou até mesmo desejável, impedindo a busca pela autonomia.</p><p>A redação aprimorada reflete sobre a ideia de que o aprisionamento mais eficaz é aquele que é consentido e sedutor (como na distopia de 'Admirável Mundo Novo'). A melodia fatal não mata o corpo, mas a vontade. O ensaio propõe que a verdadeira revolução começa com o ato de ignorar a canção e encarar a dureza da realidade fora das muralhas da ilusão.</p>`;
         }
         
-        // NOVO CONTEÚDO SIMULADO: MELHORIAS 11-14
+        // MELHORIAS 11-14 (Conteúdo Mantido)
         if (id === 'ensaio-21') {
             return `<p>O Ensaio 21 (A Autonomia da Tecnologia e a Crise do Controle Humano) analisa a Crônica 11 sob a ótica da governança algorítmica. Ele discute como a submissão humana a sistemas que deveriam apenas auxiliar ("servos digitais") representa uma falha ética na engenharia de IA e um risco à liberdade individual.</p><p>A melhoria argumenta que a verdadeira revolta não está na máquina, mas na passividade do usuário que renuncia à sua capacidade de julgamento e decisão, transformando o algoritmo de ferramenta em mestre. Propõe-se uma "ética da resistência digital" que priorize a transparência e a auditabilidade do código.</p>`;
         }
@@ -158,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return `<p>O Ensaio 24 (A Redescobreta do Ser na Desconexão: Fenomenologia da Presença) trata o Silêncio da Crônica 14 como um evento libertador. O fim da linha telefônica não é um apocalipse comunicacional, mas uma oportunidade para o retorno à consciência plena (fenomenologia da presença).</p><p>O ensaio argumenta que o "barulhento" mundo pós-conexão é, na verdade, a redescoberta do som ambiente, da interação real e do próprio corpo no espaço. A desconexão é defendida como uma técnica de resistência contra a colonização da atenção, permitindo que o indivíduo retorne ao *lógos* (razão) da existência, que se perde no ruído incessante da comunicação digital.</p>`;
         }
         
-        // Simulação para Crônicas 06 a 14 (Que não tiveram texto completo fornecido)
+        // Simulação para Crônicas 07 a 14 (Que não tiveram texto completo fornecido)
         if (id.startsWith('cronica')) {
             let baseText = `Esta é a redação completa para "${title}". (Conteúdo Simulado)`;
             baseText += " O foco é na narrativa e na descrição dos eventos do reino, com a linguagem buscando evocar o drama e a ação. Os fatos são apresentados com uma subjetividade histórica evidente. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";

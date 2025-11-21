@@ -1,238 +1,270 @@
 /* ------------------------- */
-/* CONFIGURAÇÕES GERAIS      */
+/* CONFIGURAÇÕES GERAIS      */
 /* ------------------------- */
 :root {
-    --cor-pergaminho: #f7e6c3;      /* Fundo Principal - Pergaminho/Papel */
-    --cor-tinta: #3d2a1b;           /* Texto Principal - Tinta/Sépia */
-    --cor-couro: #704214;           /* Borda/Destaque - Couro Marrom */
-    --cor-metal: #a6a6a6;           /* Detalhes/Rodapé - Metal Envelhecido */
-    --cor-vinho: #800020;           /* Títulos/Ênfase - Vinho Escuro */
+    /* Paleta Medieval/Dramática */
+    --cor-pergaminho: #fcf6e7;      /* Fundo Principal - Pergaminho/Papel (Mais claro) */
+    --cor-tinta: #2a1b0d;           /* Texto Principal - Tinta/Sépia (Mais escuro) */
+    --cor-couro: #704214;           /* Borda/Destaque - Couro Marrom */
+    --cor-metal: #a6a6a6;           /* Detalhes/Rodapé - Metal Envelhecido */
+    --cor-vinho: #6e0018;           /* Títulos/Ênfase - Vinho Escuro (Mais profundo) */
+    --fundo-base: #5d4a3b;          /* Fundo de Pedra/Madeira */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    cursor: default; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Essencial para layout consistente */
+    cursor: default; 
 }
 
 body {
-    font-family: "Old Standard TT", serif;       
-    background: #5d4a3b;                      
-    color: var(--cor-tinta);
-    line-height: 1.6;
-
-    /* 🐉 PIXEL ART BACKGROUND (Substitua a URL pela imagem de dragão/monstro) 🐉 */
-    background-image: 
-        url('URL_PADRAO_PIXEL_ART_MONSTRO.png'); 
-    
+    font-family: "Old Standard TT", serif;       
+    background: var(--fundo-base);                      
+    color: var(--cor-tinta);
+    line-height: 1.7; 
+    letter-spacing: 0.5px;
+    /* 🐉 PIXEL ART BACKGROUND (Apenas se a imagem existir) 🐉 */
+    /* background-image: url('URL_PADRAO_PIXEL_ART_MONSTRO.png'); */
     background-repeat: repeat; 
     background-size: 50px; 
     background-attachment: fixed;
 }
 
+/* Garante que o fundo seja coberto por um overlay escuro */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(93, 74, 59, 0.4); 
-    z-index: -1; 
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(42, 27, 13, 0.4); 
+    z-index: -1; 
 }
 
 /* ------------------------- */
-/* CABEÇALHO (ESTANDARTE)    */
+/* CABEÇALHO (ESTANDARTE)    */
 /* ------------------------- */
+/* Usa .hero (do HTML) */
 .hero {
-    background: var(--cor-couro);
-    color: var(--cor-pergaminho);
-    text-align: center;
-    padding: 70px 20px 50px 20px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
-    border-bottom: 5px solid var(--cor-metal); 
+    background: var(--cor-couro);
+    color: var(--cor-pergaminho);
+    text-align: center;
+    padding: 80px 20px 60px 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    border-bottom: 8px double var(--cor-metal); 
 }
 
 .hero a { text-decoration: none; color: inherit; }
 
-.hero h1 {
-    font-size: 3.2em;
-    font-weight: 700;
-    font-family: "Cinzel", serif;
-    color: var(--cor-pergaminho);
-    text-shadow: 3px 3px 5px rgba(0,0,0,0.6);
-    letter-spacing: 2px;
+/* Usa .titulo-antigo (do HTML) para o h1 */
+.hero .titulo-antigo {
+    font-size: 3.8em; 
+    font-weight: 700;
+    font-family: "Cinzel", serif;
+    color: var(--cor-pergaminho);
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.8); 
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+
+.hero .subtitulo {
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--cor-metal);
 }
 
 /* ------------------------- */
 /* MENU SUPERIOR (TIRA DE COURO) */
 /* ------------------------- */
 nav {
-    background: var(--cor-tinta);
-    padding: 12px 0;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-top: 2px solid var(--cor-metal);
-    border-bottom: 2px solid var(--cor-metal);
+    background: var(--cor-tinta);
+    padding: 10px 0; 
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-top: 3px solid var(--cor-metal);
+    border-bottom: 3px solid var(--cor-metal);
 }
 
 .lista-menu { list-style: none; display: inline-block; }
 .lista-menu li { display: inline; }
 
 nav a {
-    color: var(--cor-pergaminho);
-    text-decoration: none;
-    margin: 0 14px;
-    font-size: 1.05em;
-    padding: 8px 14px;
-    transition: background 0.3s;
-    cursor: pointer;
+    color: var(--cor-pergaminho);
+    text-decoration: none;
+    margin: 0 10px; 
+    font-size: 1em; 
+    padding: 6px 10px; 
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-nav a:hover { background: var(--cor-vinho); }
+nav a:hover { 
+    background: var(--cor-vinho); 
+    color: #ffffe0; 
+}
 
 /* ------------------------- */
 /* CONTEÚDO E CARTÕES (PERGAMINHO) */
 /* ------------------------- */
 .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
+    max-width: 1050px; 
+    margin: auto;
+    padding: 20px;
 }
 
 .titulo-secao-principal {
-    font-family: "Cinzel", serif;
-    font-size: 2.5em;
-    color: var(--cor-vinho);
-    text-align: center;
-    margin: 40px 0 25px 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    border-bottom: 2px dashed var(--cor-couro);
-    padding-bottom: 10px;
+    font-family: "Cinzel", serif;
+    font-size: 2.8em;
+    color: var(--cor-vinho);
+    text-align: center;
+    margin: 50px 0 30px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    border-bottom: 3px double var(--cor-couro);
+    padding-bottom: 15px;
+    letter-spacing: 1px;
 }
 
 .redacao {
-    background: var(--cor-pergaminho);
-    color: var(--cor-tinta);
-    padding: 30px;
-    margin-bottom: 40px;
-    border: 8px solid var(--cor-couro);
-    box-shadow: 12px 12px 0px 0px rgba(0,0,0,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer; 
+    background: var(--cor-pergaminho);
+    color: var(--cor-tinta);
+    padding: 35px; 
+    margin-bottom: 40px;
+    border: 5px solid var(--cor-couro); 
+    /* Efeito de papel envelhecido e amassado/queimado */
+    box-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.4), /* Sombra central */
+        inset 0 0 20px rgba(112, 66, 20, 0.3); /* Sombra interna para 'borda queimada' */
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; 
+    border-radius: 2px;
 }
 
 .redacao:hover {
-    transform: translate(-3px, -3px); 
-    box-shadow: 15px 15px 0px 0px rgba(0,0,0,0.5);
+    transform: scale(1.01); 
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.6),
+        inset 0 0 30px rgba(112, 66, 20, 0.5); 
 }
 
 .redacao h3 { 
-    color: var(--cor-vinho);
-    margin-bottom: 12px;
-    font-family: "Cinzel", serif;
-    font-size: 1.8em;
-    text-transform: uppercase;
+    color: var(--cor-vinho);
+    margin-bottom: 15px;
+    font-family: "Cinzel", serif;
+    font-size: 1.6em; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.redacao p { line-height: 1.8; text-indent: 30px; }
+.redacao p { 
+    line-height: 1.8; 
+    text-indent: 40px; 
+    font-size: 1.05em;
+}
 
 
-/* --- ESTILOS ESPECÍFICOS PARA O MODO DE LEITURA --- */
+/* --- ESTILOS ESPECÍFICOS PARA O MODO DE LEITURA (MASMORRA) --- */
 
 .masmorra-leitura {
-    min-height: 100vh;
-    padding: 50px 20px;
-    background: var(--cor-tinta); 
-    color: var(--cor-pergaminho);
+    min-height: 100vh;
+    padding: 60px 20px;
+    background: var(--cor-tinta); 
+    color: var(--cor-pergaminho); 
 }
 
 .container-leitura {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px;
-    background: #503c2a; 
-    border: 5px solid var(--cor-couro);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 50px;
+    background: #453526; /* Marrom escuro levemente mais claro que o fundo */
+    border: 6px double var(--cor-couro);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
 }
 
 .btn-voltar {
-    display: inline-block;
-    background: var(--cor-vinho);
-    color: var(--cor-pergaminho);
-    padding: 10px 20px;
-    text-decoration: none;
-    font-family: "Cinzel", serif;
-    border: 2px solid var(--cor-metal);
-    margin-bottom: 30px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.1s;
+    display: inline-block;
+    background: var(--cor-vinho);
+    color: var(--cor-pergaminho);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-family: "Cinzel", serif;
+    border: 2px solid var(--cor-metal);
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s, box-shadow 0.3s;
+    letter-spacing: 1px;
 }
 
 .btn-voltar:hover {
-    background: #b33a3a; 
-    transform: translateY(-2px);
+    background: #a8002a; 
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Título da Crônica Original */
+/* Título no Modo Leitura */
 .masmorra-leitura .titulo-capitulo {
-    color: var(--cor-pergaminho);
-    font-family: "Cinzel", serif;
-    font-size: 3em;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    color: var(--cor-pergaminho);
+    font-family: "Cinzel", serif;
+    font-size: 3.2em; 
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
 }
 
 /* Título da Melhoria (Ensaio) */
 .titulo-melhoria {
-    font-family: "Cinzel", serif;
-    font-size: 2em;
-    color: #ffcc00; /* Dourado para indicar "Melhoria" */
-    margin: 50px 0 20px 0;
-    border-top: 3px double var(--cor-metal);
-    padding-top: 20px;
-    text-align: center;
+    font-family: "Cinzel", serif;
+    font-size: 2.2em;
+    color: #ffcc00; /* Dourado */
+    margin: 60px 0 25px 0;
+    border-top: 4px double var(--cor-metal);
+    padding-top: 25px;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .masmorra-leitura .introducao-modal {
-    font-style: italic;
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    text-indent: 0; 
+    font-style: italic;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    text-indent: 0; 
+    color: #ccc; 
 }
 
 .masmorra-leitura p {
-    line-height: 1.8;
-    margin-bottom: 1em;
-    text-indent: 30px;
+    line-height: 1.9; 
+    margin-bottom: 1.5em;
+    text-indent: 40px;
+    font-size: 1.1em;
 }
 
 .linha-tinta {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(247, 230, 195, 0), rgba(247, 230, 195, 0.75), rgba(247, 230, 195, 0));
-    margin: 20px 0;
+    border: 0;
+    height: 2px; 
+    background-image: linear-gradient(to right, rgba(252, 246, 231, 0), rgba(252, 246, 231, 0.9), rgba(252, 246, 231, 0));
+    margin: 30px 0;
 }
 
 
 /* ------------------------- */
-/* RODAPÉ (BASE DE PEDRA)    */
+/* RODAPÉ (BASE DE PEDRA)    */
 /* ------------------------- */
 footer {
-    background: #3d3d3d;
-    color: var(--cor-metal);
-    padding: 25px 0;
-    text-align: center;
-    margin-top: 40px;
-    border-top: 5px solid var(--cor-metal);
-    font-size: 0.9em;
-    font-family: "Cinzel", serif;
-    letter-spacing: 1px;
+    background: #303030; 
+    color: var(--cor-metal);
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 6px double var(--cor-metal);
+    font-size: 0.95em;
+    font-family: "Cinzel", serif;
+    letter-spacing: 2px;
 }
