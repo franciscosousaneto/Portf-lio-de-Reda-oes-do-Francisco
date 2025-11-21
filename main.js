@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapeamentoMelhorias = {
         'cronica-01': 'ensaio-11', 
         'cronica-02': 'ensaio-12', 
-        'cronica-03': 'ensaio-13', // ATUALIZADO
-        'cronica-04': 'ensaio-14'
+        'cronica-03': 'ensaio-13', 
+        'cronica-04': 'ensaio-14' // ATUALIZADO
         // Crônicas 05 a 10 não têm melhoria correspondente
     };
 
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
 
-            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 04 em diante)
-            const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02' || articleId === 'cronica-03') ? '' : fullText;
+            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 05 em diante)
+            const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02' || articleId === 'cronica-03' || articleId === 'cronica-04') ? '' : fullText;
             
             exibirRedacaoCompleta(title, introDisplay, corpoCronica, melhoriaHTML);
         });
@@ -87,8 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function generateCorpoTexto(id, title, fullText = null) {
         
-        // --- CONTEÚDO REAL DA CRÔNICA 01, 02 e 03 (Formata o texto pego do HTML) ---
-        if (id === 'cronica-01' || id === 'cronica-02' || id === 'cronica-03') {
+        // --- CONTEÚDO REAL DA CRÔNICA 01, 02, 03 e 04 (Formata o texto pego do HTML) ---
+        if (id === 'cronica-01' || id === 'cronica-02' || id === 'cronica-03' || id === 'cronica-04') {
              if (!fullText) return '<p>Erro: Conteúdo completo não encontrado no HTML.</p>';
 
              // Heurística para quebrar o texto em parágrafos. 
@@ -120,6 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
+        // --- CONTEÚDO SIMULADO DO ENSAIO 14 (MELHORIA 4) ---
+        if (id === 'ensaio-14') {
+            return `
+                <p>O Ensaio 14 (Justiça Climática e a Governança Sólida) aprofunda a discussão sobre o desafio climático da Crônica 04, focando na responsabilidade ética e política de uma "governança ambiental mais sólida". Ele utiliza o conceito de Justiça Climática para argumentar que os impactos ambientais não são neutros, mas recaem desproporcionalmente sobre populações historicamente marginalizadas.</p>
+                <p>A redação aprimorada propõe que a mitigação (redução de emissões) deve ser indissociável da adaptação (proteção das comunidades vulneráveis) e que o incentivo à "economia verde" deve ser submetido a critérios de equidade social, e não apenas de eficiência econômica. O ensaio defende que a solução para o desafio climático no Brasil está na transição para um modelo que priorize a sociobiodiversidade e a soberania alimentar das comunidades tradicionais.</p>
+            `;
+        }
 
         // --- OUTRAS CRÔNICAS E ENSAIOS SIMULADOS ---
         let baseText = `Esta é a redação completa para "${title}". (Conteúdo Simulado)`;
@@ -145,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const contentHTML = `
             <a href="#conteudo" id="btn-voltar-topo" class="btn-voltar">⬆️ Voltar à Lista de Crônicas</a>
             
-            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)').replace('(Melhoria 2)', '(Original)').replace('(Melhoria 3)', '(Original)')}</h2>
+            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)').replace('(Melhoria 2)', '(Original)').replace('(Melhoria 3)', '(Original)').replace('(Melhoria 4)', '(Original)')}</h2>
             ${introElement}
             <hr class="linha-tinta">
             ${corpoTexto}
