@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapeamentoMelhorias = {
         'cronica-01': 'ensaio-11', 
         'cronica-02': 'ensaio-12', 
-        'cronica-03': 'ensaio-13',
+        'cronica-03': 'ensaio-13', // ATUALIZADO
         'cronica-04': 'ensaio-14'
         // Crônicas 05 a 10 não têm melhoria correspondente
     };
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
 
-            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 03 em diante)
-            const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02') ? '' : fullText;
+            // A introdução (resumo) só é exibida se o texto no HTML for curto (Crônicas 04 em diante)
+            const introDisplay = (articleId === 'cronica-01' || articleId === 'cronica-02' || articleId === 'cronica-03') ? '' : fullText;
             
             exibirRedacaoCompleta(title, introDisplay, corpoCronica, melhoriaHTML);
         });
@@ -87,12 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function generateCorpoTexto(id, title, fullText = null) {
         
-        // --- CONTEÚDO REAL DA CRÔNICA 01 e 02 (Formata o texto pego do HTML) ---
-        if (id === 'cronica-01' || id === 'cronica-02') {
+        // --- CONTEÚDO REAL DA CRÔNICA 01, 02 e 03 (Formata o texto pego do HTML) ---
+        if (id === 'cronica-01' || id === 'cronica-02' || id === 'cronica-03') {
              if (!fullText) return '<p>Erro: Conteúdo completo não encontrado no HTML.</p>';
 
              // Heurística para quebrar o texto em parágrafos. 
-             // Usa ponto final, interrogação ou exclamação, seguido por um espaço e uma letra maiúscula.
             const paragraphs = fullText.split(/(?<=[.?!])\s+(?=[A-ZÊÁÉÍÓÚÀÈÌÒÙÃÕÂÊÎÔÛÜÇ])/g);
             return paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
         }
@@ -112,6 +111,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>A redação aprimorada sugere que a invisibilidade das pessoas com deficiência é um sintoma da incapacidade da sociedade moderna de lidar com a diferença de forma permanente e integrada, preferindo soluções temporárias ou puramente burocráticas que falham em mudar a atitude cultural subjacente.</p>
             `;
         }
+
+        // --- CONTEÚDO SIMULADO DO ENSAIO 13 (MELHORIA 3) ---
+        if (id === 'ensaio-13') {
+            return `
+                <p>O Ensaio 13 (O Bem-Estar Aristotélico em um Contexto de Desigualdade) leva a referência clássica da Crônica 03 a um nível mais profundo de análise sociofilosófica. Ele questiona se a "virtude" aristotélica, necessária para a eudaimonia (vida plena), pode ser alcançada por indivíduos cujas condições materiais de subsistência são sistematicamente negadas pela desigualdade estrutural.</p>
+                <p>O argumento central é que a busca pela qualidade de vida, no contexto brasileiro, deve ser vista como uma luta por "justiça material" antes de ser uma busca por "virtude". A redação aprimorada propõe que a falha do Estado em garantir saneamento e acesso à saúde anula o próprio potencial humano de florescer, transformando o conceito filosófico de bem-estar em um privilégio de classe.</p>
+            `;
+        }
+
 
         // --- OUTRAS CRÔNICAS E ENSAIOS SIMULADOS ---
         let baseText = `Esta é a redação completa para "${title}". (Conteúdo Simulado)`;
@@ -137,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const contentHTML = `
             <a href="#conteudo" id="btn-voltar-topo" class="btn-voltar">⬆️ Voltar à Lista de Crônicas</a>
             
-            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)').replace('(Melhoria 2)', '(Original)')}</h2>
+            <h2 class="titulo-capitulo">${title.replace('(Melhoria 1)', '(Original)').replace('(Melhoria 2)', '(Original)').replace('(Melhoria 3)', '(Original)')}</h2>
             ${introElement}
             <hr class="linha-tinta">
             ${corpoTexto}
